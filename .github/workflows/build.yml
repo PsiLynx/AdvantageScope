@@ -111,12 +111,12 @@ jobs:
         id: get_release_info
         uses: kaliber5/action-get-release@v1
         with:
-          token: ${{ github.token }}
+          token: ${{ github.GH_PAT }}
       - name: "Release: Upload artifact"
         if: github.event_name == 'release'
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.GH_PAT }}
         with:
           upload_url: ${{ steps.get_release_info.outputs.upload_url }}
           asset_path: advantagescope-win-${{ matrix.arch }}-dev.exe
@@ -188,12 +188,12 @@ jobs:
         id: get_release_info
         uses: kaliber5/action-get-release@v1
         with:
-          token: ${{ github.token }}
+          token: ${{ github.GH_PAT }}
       - name: "Release: Upload artifact"
         if: github.event_name == 'release'
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.GH_PAT }}
         with:
           upload_url: ${{ steps.get_release_info.outputs.upload_url }}
           asset_path: advantagescope-linux-${{ matrix.arch.electronArch }}-dev.${{ matrix.format }}
@@ -249,12 +249,12 @@ jobs:
         id: get_release_info
         uses: kaliber5/action-get-release@v1
         with:
-          token: ${{ github.token }}
+          token: ${{ github.GH_PAT }}
       - name: "Release: Upload artifact"
         if: github.event_name == 'release'
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.GH_PAT }}
         with:
           upload_url: ${{ steps.get_release_info.outputs.upload_url }}
           asset_path: advantagescope-wpilib-win-${{ matrix.arch }}.zip
@@ -310,12 +310,12 @@ jobs:
         id: get_release_info
         uses: kaliber5/action-get-release@v1
         with:
-          token: ${{ github.token }}
+          token: ${{ github.GH_PAT }}
       - name: "Release: Upload artifact"
         if: github.event_name == 'release'
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.GH_PAT }}
         with:
           upload_url: ${{ steps.get_release_info.outputs.upload_url }}
           asset_path: advantagescope-wpilib-linux-${{ matrix.arch }}.zip
@@ -335,11 +335,11 @@ jobs:
         id: get_release_info
         uses: kaliber5/action-get-release@v1
         with:
-          token: ${{ github.token }}
+          token: ${{ github.GH_PAT }}
       - name: Publish AppArmor profile
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.GH_PAT }}
         with:
           upload_url: ${{ steps.get_release_info.outputs.upload_url }}
           asset_path: advantagescope.AppArmor
@@ -348,7 +348,7 @@ jobs:
       - name: Edit release
         uses: irongut/EditRelease@v1.2.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
           id: ${{ github.event.release.id }}
           prerelease: false
           replacebody: false
